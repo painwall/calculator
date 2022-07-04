@@ -1,17 +1,19 @@
-package com.example.calculator;
+package com.example.calculator.Number;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 
 public class Number  {
     private StringBuilder number = new StringBuilder("0");
-    private int MAX_MANTISSA, MAX_NUMBER, LEN_MAX_NUMBER;
+    private int MAX_MANTISSA;
+    private BigDecimal MAX_NUMBER, MIN_NUMBER;
 
 
-    Number (String number, int MAX_MANTISSA, int MAX_NUMBER){
+    public Number(String number, int MAX_MANTISSA, int MAX_NUMBER, int MIN_NUMBER){
         this.MAX_MANTISSA = MAX_MANTISSA;
-        this.MAX_NUMBER = MAX_NUMBER;
-        this.LEN_MAX_NUMBER = String.valueOf(MAX_NUMBER).length();
+        this.MAX_NUMBER = new BigDecimal(MAX_NUMBER);
+        this.MIN_NUMBER = new BigDecimal(MIN_NUMBER);
         setNumber(number);
     }
 
@@ -19,7 +21,7 @@ public class Number  {
     public int getCountVoids(){
         int indexDot = number.indexOf(".");
         if (indexDot < 0) { return 0; }
-        else { return MAX_MANTISSA - (number.length() - indexDot); }
+        else { return MAX_MANTISSA - (number.length() - indexDot - 1); }
     }
 
     public boolean isDot() {
@@ -27,30 +29,25 @@ public class Number  {
     }
 
     public void setNumber(String number) {
-        System.out.println("NUMBER: " + number);
         this.number.insert(0, number);
         this.number.setLength(number.length());
-        System.out.println("NUMBER: " + this.number);
     }
 
 
     public void appendDigit(char ch) throws AppendError {
         boolean _isDot = isDot();
-        if (ch != '.' && !Character.isDigit(ch)) {throw new RuntimeException("NO_DIGIT");}
-        if ((!_isDot && ch == '.') || (!_isDot && ch != '.' && number.length() + 1 <= LEN_MAX_NUMBER) || (_isDot && getCountVoids() > 0)) { number.append(ch); }
+        if (!Character.isDigit(ch)) { throw new RuntimeException("NO_DIGIT"); }
+        if ((!_isDot && checkNumber(new BigDecimal(number + Character.toString(ch)))) || (_isDot && getCountVoids() > 0)) { number.append(ch); }
         else { throw new AppendError("APPEND_ERROR"); }
     }
 
     public void appendDot() throws AppendError {
-        if (isDot()){
-            throw new AppendError("");
-        }
+        if (isDot()){ throw new AppendError("ERROR DOT"); }
+        else { number.append('.'); }
     }
 
-    public void deleteLastCharacter(){
-        if (number.length() > 0) {
-            number.deleteCharAt(number.length() - 1);
-        }
+    public void deleteLastCharacter() {
+        if (number.length() > 0) { number.deleteCharAt(number.length() - 1); }
     }
 
     public String toString() {
@@ -69,63 +66,68 @@ public class Number  {
     public void add(Number num) throws MaxNumberError {
         BigDecimal num1 = new BigDecimal(number.toString(), MathContext.DECIMAL32);
         BigDecimal num2 = new BigDecimal(num.toString(), MathContext.DECIMAL32);
-        BigDecimal result = num1.add(num2).setScale(MAX_MANTISSA, BigDecimal.ROUND_FLOOR);
+        BigDecimal result = num1.add(num2).setScale(MAX_MANTISSA, RoundingMode.FLOOR);
         if (checkNumber(result)) {
-            throw new MaxNumberError("MAX_NUMBER_ERROR");
+            setNumber(result.toString());
         }
         else {
-            setNumber(result.toString());
+            throw new MaxNumberError("MAX_NUMBER_ERROR");
         }
     }
 
     public void subtract(Number num) throws MaxNumberError {
         BigDecimal num1 = new BigDecimal(number.toString(), MathContext.DECIMAL32);
         BigDecimal num2 = new BigDecimal(num.toString(), MathContext.DECIMAL32);
-        BigDecimal result = num1.subtract(num2).setScale(MAX_MANTISSA, BigDecimal.ROUND_FLOOR);
+        BigDecimal result = num1.subtract(num2).setScale(MAX_MANTISSA, RoundingMode.FLOOR);
         if (checkNumber(result)) {
-            throw new MaxNumberError("MAX_NUMBER_ERROR");
+            setNumber(result.toString());
         }
         else {
-            setNumber(result.toString());
+            throw new MaxNumberError("MAX_NUMBER_ERROR");
         }
     }
 
     public void divide (Number num) throws MaxNumberError {
         BigDecimal num1 = new BigDecimal(number.toString(), MathContext.DECIMAL32);
         BigDecimal num2 = new BigDecimal(num.toString(), MathContext.DECIMAL32);
-        BigDecimal result = num1.divide(num2).setScale(MAX_MANTISSA, BigDecimal.ROUND_FLOOR);
+        BigDecimal result = num1.divide(num2).setScale(MAX_MANTISSA, RoundingMode.FLOOR);
         if (checkNumber(result)) {
-            throw new MaxNumberError("MAX_NUMBER_ERROR");
+            setNumber(result.toString());
         }
         else {
-            setNumber(result.toString());
+            throw new MaxNumberError("MAX_NUMBER_ERROR");
         }
     }
 
     public void multiply (Number num) throws MaxNumberError{
         BigDecimal num1 = new BigDecimal(number.toString(), MathContext.DECIMAL32);
         BigDecimal num2 = new BigDecimal(num.toString(), MathContext.DECIMAL32);
-        BigDecimal result = num1.multiply(num2).setScale(MAX_MANTISSA, BigDecimal.ROUND_FLOOR);
+        BigDecimal result = num1.multiply(num2).setScale(MAX_MANTISSA, RoundingMode.FLOOR);
         if (checkNumber(result)) {
-            throw new MaxNumberError("MAX_NUMBER_ERROR");
+            setNumber(result.toString());
         }
         else {
-            setNumber(result.toString());
+            throw new MaxNumberError("MAX_NUMBER_ERROR");
         }
     }
 
     public boolean checkNumber(BigDecimal num) {
-        return num.compareTo(new BigDecimal(MAX_NUMBER)) > 0;
+       return num.compareTo(MAX_NUMBER) <= 0 && num.compareTo(MIN_NUMBER) >= 0;
     }
-}
 
-
-class AppendError extends Exception {
-    AppendError(String msg){
-        super(msg);
+    public void setNegative() {
+        if (number.length() > 0){
+            if (number.charAt(0) == '-'){
+                number.deleteCharAt(0);
+            }
+            else {
+                number.insert(0, '-');
+            }
+        }
     }
+
 }
 
-class MaxNumberError extends Exception {
-    MaxNumberError(String msg) { super(msg); }
-}
+
+
+

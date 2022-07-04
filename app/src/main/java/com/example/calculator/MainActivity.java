@@ -6,10 +6,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import java.lang.Math;
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
+
+import com.example.calculator.Number.Number;
+import com.example.calculator.Number.MaxNumberError;
+import com.example.calculator.Number.AppendError;
 
 // что нужно сделать:
 // удаление символов;
@@ -19,9 +19,9 @@ import java.math.RoundingMode;
 // проверка на огрмные числа;
 public class MainActivity extends AppCompatActivity {
     private TextView field;
-    final int MAX_MANTISSA = 5, MAX_NUMBER = 1000000000;
-    Number num1 = new Number("0", MAX_MANTISSA, MAX_NUMBER),
-            num2 = new Number("0", MAX_MANTISSA, MAX_NUMBER);
+    final int MAX_MANTISSA = 5, MAX_NUMBER = 1000000000, MIN_NUMBER = -1000000000;
+    Number num1 = new Number("0", MAX_MANTISSA, MAX_NUMBER, MIN_NUMBER),
+            num2 = new Number("0", MAX_MANTISSA, MAX_NUMBER, MIN_NUMBER);
     char operator = ' ';
     private final String ERROR_MSG = "ERROR";
 
