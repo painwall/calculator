@@ -28,6 +28,12 @@ public class Number  {
         return number.indexOf(".") >= 0;
     }
 
+    public void setNumber(int number) {
+        String strNumber = String.valueOf(number);
+        this.number.insert(0, strNumber);
+        this.number.setLength(strNumber.length());
+    }
+
     public void setNumber(String number) {
         this.number.insert(0, number);
         this.number.setLength(number.length());
