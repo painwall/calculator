@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onDotClick"
-                android:text="@string/_dote"
+                android:text="@string/_dot"
                 tools:ignore="MissingConstraints" />
 
             <Button
