@@ -1,9 +1,12 @@
 package com.example.calculator;
 
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Space;
+import android.widget.GridLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,8 +26,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Display display = getWindowManager().getDefaultDisplay();
+        final int width = display.getWidth();
+        final int height = display.getHeight();
+
         setContentView(R.layout.activity_main);
         field = findViewById(R.id.field);
+
+
+//        GridLayout layout_width_buttons = findViewById(R.id.layout_with_buttons);
+//        double spaces_height = (width - (field_num1.getHeight() + field_num2.getHeight() + layout_width_buttons.getHeight())) / 2.;
+//        Space space_top = findViewById(R.id.space_top);
+//        space_top.setHeigth();
+//        Space space_space_bottom = findViewById(R.id.space_bottom);
+    }
+
+    protected void setDefaultInterface() {
+        field.setText("");
     }
 
 
@@ -32,8 +50,12 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button)view;
         try {
             if (field.getText().toString().equals(ERROR_MSG)) { field.setText(""); }
-            if (operator == ' ') { num1.appendDigit(button.getText().charAt(0)); }
-            else { num2.appendDigit(button.getText().charAt(0)); }
+            if (operator == ' ') {
+                num1.appendDigit(button.getText().charAt(0));
+            }
+            else {
+                num2.appendDigit(button.getText().charAt(0));
+            }
             field.append(button.getText());
         } catch (AppendError ignored) {}
     }
@@ -54,18 +76,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onDotClick(View view){
-        String text = field.getText().toString();
-        if (text.length() > 0 && Character.isDigit(text.charAt(text.length() - 1))) {
-            try {
-                if (operator == ' ') {
-                    num1.appendDot();
-                } else {
-                    num2.appendDot();
-                }
+    public void onDotClick(View view) {
+        try {
+            String text = field.getText().toString();
+            if (text.length() > 0 && Character.isDigit(text.charAt(text.length() - 1))){
+                if (operator == ' ') { num1.appendDot(); }
+                else { num2.appendDot(); }
                 field.append(".");
-            } catch (AppendError ignore) { }
-        }
+            }
+        } catch (AppendError ignore) { }
+
     }
 
 
@@ -89,10 +109,12 @@ public class MainActivity extends AppCompatActivity {
                     return;
             }
 
+            setDefaultInterface();
             num2.setNumber(0);
             operator = ' ';
             field.setText(num1.toString());
         } catch (MaxNumberError maxNumberError) {
+            setDefaultInterface();
             field.setText(ERROR_MSG);
             num1.setNumber(0);
             num2.setNumber(0);
