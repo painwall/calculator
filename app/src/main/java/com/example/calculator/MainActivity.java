@@ -1,6 +1,7 @@
 package com.example.calculator;
 
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
@@ -26,10 +27,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Display display = getWindowManager().getDefaultDisplay();
-        final int width = display.getWidth();
-        final int height = display.getHeight();
-
         setContentView(R.layout.activity_main);
         field = findViewById(R.id.field);
 
@@ -43,13 +40,15 @@ public class MainActivity extends AppCompatActivity {
 
     protected void setDefaultInterface() {
         field.setText("");
+        editFontSize();
     }
 
 
     public void onNumberClick(View view){
         Button button = (Button)view;
+        String text = field.getText().toString();
         try {
-            if (field.getText().toString().equals(ERROR_MSG)) { field.setText(""); }
+            if (text.equals(ERROR_MSG) || text.equals("0")) { field.setText(""); }
             if (operator == ' ') {
                 num1.appendDigit(button.getText().charAt(0));
             }
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 num2.appendDigit(button.getText().charAt(0));
             }
             field.append(button.getText());
+            editFontSize();
         } catch (AppendError ignored) {}
     }
 
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 operator = button.getText().charAt(0);
                 field.append(String.valueOf(operator));
+                editFontSize();
             }
         }
     }
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 if (operator == ' ') { num1.appendDot(); }
                 else { num2.appendDot(); }
                 field.append(".");
+                editFontSize();
             }
         } catch (AppendError ignore) { }
 
@@ -122,4 +124,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    protected void editFontSize() {
+        float fontSize = field.getTextSize() / getResources().getDisplayMetrics().scaledDensity;
+        int countSymbols = field.getText().length();
+
+        if (countSymbols <= 12 && fontSize != 40) {
+            field.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
+        } else if (countSymbols > 12 && fontSize == 40) {
+            field.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+        }
+    }
 }
