@@ -15,6 +15,8 @@ import com.example.calculator.Number.Number;
 import com.example.calculator.Number.MaxNumberError;
 import com.example.calculator.Number.AppendError;
 
+import java.util.function.Predicate;
+
 public class MainActivity extends AppCompatActivity {
     private TextView field;
     final int MAX_MANTISSA = 5, MAX_NUMBER = 1000000000, MIN_NUMBER = -1000000000;
@@ -62,17 +64,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void onOperatorClick(View view){
         Button button = (Button)view;
-        String text = field.getText().toString();
-        if (text.length() > 0 && Character.isDigit(text.charAt(text.length() - 1))){
+        Predicate<String> condition = in -> in.length() > 0 && Character.isDigit(in.charAt(in.length() - 1));
+
+        if (condition.test(field.getText().toString())){
             if (button.getText().equals("=") && operator != ' ') {
                 calc();
             } else if (!button.getText().equals("=")){
                 if (operator != ' '){
                     calc();
                 }
-                operator = button.getText().charAt(0);
-                field.append(String.valueOf(operator));
-                editFontSize();
+                if (condition.test(field.getText().toString())) {
+                    operator = button.getText().charAt(0);
+                    field.append(String.valueOf(operator));
+                    editFontSize();
+                }
             }
         }
     }
