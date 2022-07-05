@@ -135,8 +135,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (countSymbols <= 12 && fontSize != 40) {
             field.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
-        } else if (countSymbols > 12 && fontSize == 40) {
+        } else if (countSymbols > 12 && countSymbols <= 17 && fontSize != 30) {
             field.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+        } else if (countSymbols > 17 && fontSize != 20) {
+            field.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         }
     }
 }

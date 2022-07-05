@@ -239,6 +239,7 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:gravity="bottom|top"
+        android:maxLines="1"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/layout_with_buttons"
         app:layout_constraintEnd_toEndOf="parent"
