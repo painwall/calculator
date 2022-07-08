@@ -43,7 +43,12 @@ public class Number  {
     public void appendDigit(char ch) throws AppendError {
         boolean _isDot = isDot();
         if (!Character.isDigit(ch)) { throw new RuntimeException("NO_DIGIT"); }
-        if ((!_isDot && checkNumber(new BigDecimal(number + Character.toString(ch)))) || (_isDot && getCountVoids() > 0)) { number.append(ch); }
+        if ((!_isDot && checkNumber(new BigDecimal(number + Character.toString(ch)))) || (_isDot && getCountVoids() > 0)) {
+            if (number.length() > 0 && number.charAt(0) == '0') {
+                number.deleteCharAt(0);
+            }
+            number.append(ch);
+        }
         else { throw new AppendError("APPEND_ERROR"); }
     }
 
