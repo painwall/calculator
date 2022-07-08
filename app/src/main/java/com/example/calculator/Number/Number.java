@@ -122,7 +122,7 @@ public class Number  {
     }
 
     public void changeSign() {
-        if (number.length() > 0){
+        if (number.length() > 0 && !number.equals("0")){
             if (number.charAt(0) == '-'){
                 number.deleteCharAt(0);
             }
