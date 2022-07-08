@@ -121,7 +121,7 @@ public class Number  {
        return num.compareTo(MAX_NUMBER) <= 0 && num.compareTo(MIN_NUMBER) >= 0;
     }
 
-    public void setNegative() {
+    public void changeSign() {
         if (number.length() > 0){
             if (number.charAt(0) == '-'){
                 number.deleteCharAt(0);
