@@ -4,234 +4,282 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="0sp"
     tools:context=".MainActivity">
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/layout_with_buttons"
         android:layout_width="0dp"
-        android:layout_height="200dp"
-        app:columnCount="4"
-        app:rowCount="4"
+        android:layout_height="230dp"
+        android:layout_margin="10sp"
+        app:columnCount="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:rowCount="4"
         tools:ignore="MissingConstraints">
 
         <Button
             android:id="@+id/button1"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
+            android:layout_marginHorizontal="2sp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:maxHeight="100dp"
+            android:minWidth="60dp"
+            android:minHeight="48dp"
             android:onClick="onNumberClick"
             android:text="@string/_1"
-            app:cornerRadius="0dp"
             app:layout_column="0"
+            app:layout_columnWeight="1"
             app:layout_row="0"
-            tools:ignore="MissingConstraints" />
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
             android:onClick="onNumberClick"
             android:text="@string/_2"
             app:layout_column="1"
+            app:layout_columnWeight="1"
             app:layout_row="0"
-            tools:ignore="MissingConstraints" />
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
+            android:layout_marginHorizontal="2sp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
             android:onClick="onNumberClick"
             android:text="@string/_3"
             app:layout_column="2"
+            app:layout_columnWeight="1"
             app:layout_row="0"
-            tools:ignore="MissingConstraints" />
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
             android:onClick="onNumberClick"
             android:text="@string/_4"
             app:layout_column="0"
-            app:layout_row="1" />
+            app:layout_columnWeight="1"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/button5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
             android:onClick="onNumberClick"
             android:text="@string/_5"
             app:layout_column="1"
-            app:layout_row="1" />
+            app:layout_columnWeight="1"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/button6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
             android:onClick="onNumberClick"
             android:text="@string/_6"
             app:layout_column="2"
-            app:layout_row="1" />
+            app:layout_columnWeight="1"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/button7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
             android:onClick="onNumberClick"
             android:text="@string/_7"
             app:layout_column="0"
-            app:layout_row="2" />
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
-            android:onClick="onNumberClick"
-            android:text="@string/_9"
-            app:layout_column="2"
-            app:layout_row="2" />
+            app:layout_columnWeight="1"
+            app:layout_row="2"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
             android:onClick="onNumberClick"
             android:text="@string/_8"
             app:layout_column="1"
-            app:layout_row="2" />
+            app:layout_columnWeight="1"
+            app:layout_row="2"
+            app:layout_rowWeight="1" />
 
         <Button
-            android:id="@+id/button_dote"
+            android:id="@+id/button9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
-            android:onClick="onDotClick"
-            android:text="@string/_dot"
-            app:layout_column="0"
-            app:layout_row="3"
-            tools:ignore="MissingConstraints" />
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
+            android:onClick="onNumberClick"
+            android:text="@string/_9"
+            app:layout_column="2"
+            app:layout_columnWeight="1"
+            app:layout_row="2"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/button0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
             android:onClick="onNumberClick"
             android:text="@string/_0"
-            app:layout_column="1"
+            app:layout_column="0"
+            app:layout_columnSpan="2"
+            app:layout_columnWeight="1"
             app:layout_row="3"
-            tools:ignore="MissingConstraints" />
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/button_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:maxWidth="70dp"
+            android:minWidth="60dp"
+            android:onClick="onDotClick"
+            android:text="@string/_dot"
+            app:layout_column="2"
+            app:layout_columnWeight="1"
+            app:layout_row="3"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
+            android:onClick="onOperatorClick"
+            android:text="@string/_addition"
+            app:layout_column="3"
+            app:layout_columnWeight="1"
+            app:layout_row="0"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/button_subtract"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
+            android:onClick="onOperatorClick"
+            android:text="@string/_subtraction"
+            app:layout_column="3"
+            app:layout_columnWeight="1"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/button_multiply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
+            android:onClick="onOperatorClick"
+            android:text="@string/_multiplication"
+            app:layout_column="3"
+            app:layout_columnWeight="1"
+            app:layout_row="2"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/button_divide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
+            android:onClick="onOperatorClick"
+            android:text="@string/_division"
+            app:layout_column="3"
+            app:layout_columnWeight="1"
+            app:layout_row="3"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/plus_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
+            android:onClick="onOperatorClick"
+            android:text="@string/_plus_minus"
+            app:layout_column="4"
+            app:layout_columnWeight="1"
+            app:layout_row="0"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/exponentiation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
+            android:onClick="onOperatorClick"
+            android:text="@string/_exponentiation"
+            app:layout_column="4"
+            app:layout_columnWeight="1"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/button_equally"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:minWidth="60dp"
             android:onClick="onOperatorClick"
             android:text="@string/_equally"
-            app:layout_column="2"
-            app:layout_row="3"
-            tools:ignore="MissingConstraints" />
+            app:layout_column="4"
+            app:layout_columnWeight="1"
+            app:layout_row="2"
+            app:layout_rowWeight="1"
+            app:layout_rowSpan="2"
+            />
 
-        <Button
-            android:id="@+id/button_addition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
-            android:onClick="onOperatorClick"
-            android:text="@string/_addition"
-            app:layout_column="3"
-            app:layout_row="0" />
 
-        <Button
-            android:id="@+id/button_subtraction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
-            android:onClick="onOperatorClick"
-            android:text="@string/_subtraction"
-            app:layout_column="3"
-            app:layout_row="1" />
-
-        <Button
-            android:id="@+id/button_multiplication"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
-            android:onClick="onOperatorClick"
-            android:text="@string/_multiplication"
-            app:layout_column="3"
-            app:layout_row="2" />
-
-        <Button
-            android:id="@+id/button_division"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetLeft="2dp"
-            android:insetTop="2dp"
-            android:insetRight="2dp"
-            android:insetBottom="2dp"
-            android:onClick="onOperatorClick"
-            android:text="@string/_division"
-            app:layout_column="3"
-            app:layout_row="3" />
     </androidx.gridlayout.widget.GridLayout>
 
     <TextView
