@@ -132,6 +132,10 @@ public class Number  {
         }
     }
 
+    public boolean isNegative() {
+        return number.length() > 0 && number.charAt(0) == '-';
+    }
+
 }
 
 

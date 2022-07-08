@@ -141,4 +141,28 @@ public class MainActivity extends AppCompatActivity {
             field.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         }
     }
+
+    protected void renderField() {
+        StringBuilder text = new StringBuilder();
+        boolean conditionNum1 = !num1.toString().equals("0");
+        boolean conditionOperator = operator != ' ';
+        boolean conditionNum2 = !num2.toString().equals("0");
+
+        if (conditionNum1){
+            text.append(num1.toString());
+        }
+        if (conditionNum1 && conditionOperator) {
+            text.append(operator);
+        }
+        if (conditionNum1 && conditionOperator && conditionNum2){
+            if (num2.isNegative()) {
+                text.append('(');
+                text.append(num2);
+                text.append(')');
+            } else { text.append(num2); }
+        }
+
+
+    }
+
 }
