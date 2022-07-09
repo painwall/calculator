@@ -64,22 +64,37 @@ public class MainActivity extends AppCompatActivity {
 
     public void onOperatorClick(View view){
         Button button = (Button)view;
-        Predicate<String> condition = in -> in.length() > 0 && Character.isDigit(in.charAt(in.length() - 1));
+        String buttonText = button.getText().toString();
+        String fieldText = field.getText().toString();
+        Predicate<String> conditionDigit = in -> in.length() > 0 && Character.isDigit(in.charAt(in.length() - 1));
+        Predicate<String> conditionParenthesis = in -> in.length() > 0 && in.charAt(in.length() - 1) == ')';
 
-        if (condition.test(field.getText().toString())){
-            if (button.getText().equals("=") && operator != ' ') {
-                calc();
-            } else if (!button.getText().equals("=")){
-                if (operator != ' '){
+        switch (buttonText) {
+            case ("="):
+                if (conditionDigit.test(fieldText) || conditionParenthesis.test(fieldText)) {
                     calc();
                 }
-                if (condition.test(field.getText().toString())) {
-                    operator = button.getText().charAt(0);
-                    field.append(String.valueOf(operator));
-                    editFontSize();
+                break;
+            case ("±"):
+                if (conditionDigit.test(fieldText) || conditionParenthesis.test(fieldText)) {
+                    if (operator == ' ') { num1.changeSign(); }
+                    else { num2.changeSign(); }
+                    renderField();
                 }
-            }
+                break;
+            default:
+                if (conditionDigit.test(fieldText)) {
+                    if (operator != ' ') { calc(); }
+                    else {
+                        operator = button.getText().charAt(0);
+                        field.append(String.valueOf(operator));
+                        editFontSize();
+                    }
+                }
+                break;
+
         }
+        System.out.println("OPERATOR: " + num1 + " " + operator + " " + num2);
     }
 
     public void onDotClick(View view) {
@@ -143,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void renderField() {
+        System.out.println("RENDER");
         StringBuilder text = new StringBuilder();
         boolean conditionNum1 = !num1.toString().equals("0");
         boolean conditionOperator = operator != ' ';
@@ -161,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                 text.append(')');
             } else { text.append(num2); }
         }
-
+        field.setText(text.toString());
 
     }
 
