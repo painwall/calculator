@@ -31,13 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         field = findViewById(R.id.field);
-
-
-//        GridLayout layout_width_buttons = findViewById(R.id.layout_with_buttons);
-//        double spaces_height = (width - (field_num1.getHeight() + field_num2.getHeight() + layout_width_buttons.getHeight())) / 2.;
-//        Space space_top = findViewById(R.id.space_top);
-//        space_top.setHeigth();
-//        Space space_space_bottom = findViewById(R.id.space_bottom);
     }
 
     protected void setDefaultInterface() {
@@ -57,7 +50,13 @@ public class MainActivity extends AppCompatActivity {
             else {
                 num2.appendDigit(button.getText().charAt(0));
             }
-            field.append(button.getText());
+
+            if (text.length() > 0 && text.charAt(text.length() - 1) == ')') {
+                renderField();
+            }
+            else {
+                field.append(button.getText());
+            }
             editFontSize();
         } catch (AppendError ignored) {}
     }
@@ -99,13 +98,26 @@ public class MainActivity extends AppCompatActivity {
 
     public void onDotClick(View view) {
         try {
-            String text = field.getText().toString();
-            if (text.length() > 0 && Character.isDigit(text.charAt(text.length() - 1))){
+            StringBuilder text = new StringBuilder(field.getText().toString());
+            boolean conditionDigit = text.length() > 0 && Character.isDigit(text.charAt(text.length() - 1));
+            boolean conditionParenthesis = text.length() > 0 && text.charAt(text.length() - 1) == ')';
+            if (conditionDigit || conditionParenthesis){
                 if (operator == ' ') { num1.appendDot(); }
                 else { num2.appendDot(); }
-                field.append(".");
-                editFontSize();
+
             }
+
+            if (conditionDigit) {
+                field.append(".");
+            }
+            else if (conditionParenthesis) {
+                text.deleteCharAt(text.length() - 1);
+                text.append('.');
+                text.append(')');
+            }
+            editFontSize();
+
+
         } catch (AppendError ignore) { }
 
     }
@@ -160,17 +172,11 @@ public class MainActivity extends AppCompatActivity {
     protected void renderField() {
         System.out.println("RENDER");
         StringBuilder text = new StringBuilder();
-        boolean conditionNum1 = !num1.toString().equals("0");
         boolean conditionOperator = operator != ' ';
-        boolean conditionNum2 = !num2.toString().equals("0");
 
-        if (conditionNum1){
-            text.append(num1.toString());
-        }
-        if (conditionNum1 && conditionOperator) {
+        text.append(num1.toString());
+        if (conditionOperator) {
             text.append(operator);
-        }
-        if (conditionNum1 && conditionOperator && conditionNum2){
             if (num2.isNegative()) {
                 text.append('(');
                 text.append(num2);
@@ -178,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
             } else { text.append(num2); }
         }
         field.setText(text.toString());
+        editFontSize();
 
     }
 
