@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.calculator.Number.Number;
 import com.example.calculator.Number.MaxNumberError;
 import com.example.calculator.Number.AppendError;
+import com.example.calculator.Number.ZeroError;
 
 import java.util.function.Predicate;
 
@@ -137,7 +138,16 @@ public class MainActivity extends AppCompatActivity {
                     num1.multiply(num2);
                     break;
                 case ('/'):
-                    num1.divide(num2);
+                    try {
+                        num1.divide(num2);
+                    } catch (ZeroError e) {
+                        setDefaultInterface();
+                        field.setText(ERROR_MSG);
+                        num1.setNumber(0);
+                        num2.setNumber(0);
+                        operator = ' ';
+                        return;
+                    }
                     break;
                 default:
                     return;
@@ -170,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void renderField() {
-        System.out.println("RENDER");
         StringBuilder text = new StringBuilder();
         boolean conditionOperator = operator != ' ';
 

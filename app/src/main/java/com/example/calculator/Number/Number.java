@@ -98,7 +98,8 @@ public class Number  {
         }
     }
 
-    public void divide (Number num) throws MaxNumberError {
+    public void divide (Number num) throws MaxNumberError, ZeroError {
+        if (num.toString().equals("0")) { throw new ZeroError("ZERO_ERROR"); }
         BigDecimal num1 = new BigDecimal(number.toString(), MathContext.DECIMAL32);
         BigDecimal num2 = new BigDecimal(num.toString(), MathContext.DECIMAL32);
         BigDecimal result = num1.divide(num2).setScale(MAX_MANTISSA, RoundingMode.FLOOR);
