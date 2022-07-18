@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         num1.setNumber(0);
         num2.setNumber(0);
         operator = ' ';
+        editFontSize();
     }
 
 
