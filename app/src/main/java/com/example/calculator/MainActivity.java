@@ -161,9 +161,7 @@ public class MainActivity extends AppCompatActivity {
                     } catch (ZeroError e) {
                         setDefaultInterface();
                         field.setText(ERROR_MSG);
-                        num1.setNumber(0);
-                        num2.setNumber(0);
-                        operator = ' ';
+                        setDefaultValues();
                         return;
                     }
                     break;
@@ -176,11 +174,9 @@ public class MainActivity extends AppCompatActivity {
             operator = ' ';
             field.setText(num1.toString());
         } catch (MaxNumberError maxNumberError) {
-            setDefaultInterface();
             field.setText(ERROR_MSG);
-            num1.setNumber(0);
-            num2.setNumber(0);
-            operator = ' ';
+            setDefaultInterface();
+            setDefaultValues();
         }
     }
 
