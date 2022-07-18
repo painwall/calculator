@@ -2,12 +2,11 @@ package com.example.calculator;
 
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Space;
-import android.widget.GridLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,12 +31,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         field = findViewById(R.id.field);
+        ImageButton btn = findViewById(R.id.deleteButton);
+        btn.setOnLongClickListener(
+                new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        setDefaultInterface();
+                        setDefaultValues();
+                        return true;
+                    }
+                }
+        );
+
     }
 
-    protected void setDefaultInterface() {
+    private void setDefaultInterface() {
         field.setText("");
         editFontSize();
     }
+
+    private void setDefaultValues() {
+        num1.setNumber(0);
+        num2.setNumber(0);
+        operator = ' ';
+    }
+
 
 
     public void onNumberClick(View view){
