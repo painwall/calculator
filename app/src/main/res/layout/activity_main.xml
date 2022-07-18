@@ -301,6 +301,7 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginEnd="10dp"
+        android:onClick="onDeleteButtonClick"
         app:layout_constraintBottom_toTopOf="@+id/layout_with_buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

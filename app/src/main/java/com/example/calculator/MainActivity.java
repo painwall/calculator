@@ -2,7 +2,6 @@ package com.example.calculator;
 
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -10,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.calculator.Number.LengthError;
 import com.example.calculator.Number.Number;
 import com.example.calculator.Number.MaxNumberError;
 import com.example.calculator.Number.AppendError;
@@ -141,6 +141,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onDeleteButtonClick(View view) {
+        if (operator == ' ') {
+            try { num1.deleteLastCharacter(); } catch (LengthError ignored) {}
+        } else {
+            try { num2.deleteLastCharacter(); } catch (LengthError e) {
+                operator = ' ';
+            }
+        }
+        StringBuilder text = new StringBuilder(field.getText().toString());
+        int textLength = text.length();
+        if (textLength > 0) {
+            text.deleteCharAt(textLength - 1);
+            field.setText(text.toString());
+            editFontSize();
+        }
+    }
 
 
     private void calc () {

@@ -57,8 +57,9 @@ public class Number  {
         else { number.append('.'); }
     }
 
-    public void deleteLastCharacter() {
-        if (number.length() > 0) { number.deleteCharAt(number.length() - 1); }
+    public void deleteLastCharacter() throws LengthError {
+        if (number.length() == 0) { throw new LengthError ("LENGTH_ERROR"); }
+        else { number.deleteCharAt(number.length() - 1); }
     }
 
     public String toString() {
