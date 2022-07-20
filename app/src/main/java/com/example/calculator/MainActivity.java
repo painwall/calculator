@@ -13,6 +13,7 @@ import com.example.calculator.Number.LengthError;
 import com.example.calculator.Number.Number;
 import com.example.calculator.Number.MaxNumberError;
 import com.example.calculator.Number.AppendError;
+import com.example.calculator.Number.SqrtError;
 import com.example.calculator.Number.ZeroError;
 
 import java.util.function.Predicate;
@@ -101,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
                     renderField();
                 }
                 break;
+            case ("√"):
+                if (operator == ' ' && conditionDigit.test(fieldText)) {
+                    sqrt();
+                }
+                break;
             default:
                 if (conditionDigit.test(fieldText)) {
                     if (operator != ' ') { calc(); }
@@ -159,6 +165,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void sqrt() {
+        try {
+            num1.sqrt();
+            setDefaultInterface();
+            field.setText(num1.toString());
+        } catch (SqrtError | MaxNumberError sqrtError) {
+            setDefaultInterface();
+            setDefaultValues();
+            field.setText(ERROR_MSG);
+        }
+    }
 
     private void calc () {
         try {

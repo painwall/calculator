@@ -3,6 +3,7 @@ package com.example.calculator.Number;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class Number  {
     private StringBuilder number = new StringBuilder("0");
@@ -124,13 +125,24 @@ public class Number  {
         }
     }
 
+    public void sqrt() throws  MaxNumberError, SqrtError {
+        double num = Double.parseDouble(number.toString());
+        if (num < 0) { throw new SqrtError("SQRT_ERROR"); }
+        BigDecimal result = new BigDecimal(Math.sqrt(num)).setScale(MAX_MANTISSA, RoundingMode.FLOOR);
+        if (checkNumber(result)) {
+            setNumber(result.toString());
+        } else {
+            throw new MaxNumberError("MAX_NUMBER_ERROR");
+        }
+    }
+
     public boolean checkNumber(BigDecimal num) {
        return num.compareTo(MAX_NUMBER) <= 0 && num.compareTo(MIN_NUMBER) >= 0;
     }
 
     public void changeSign() {
         if (number.length() > 0 && !number.equals("0")){
-            if (number.charAt(0) == '-'){
+            if (number.charAt(0) == '-') {
                 number.deleteCharAt(0);
             }
             else {

@@ -18,5 +18,6 @@
     <string name="_division">/</string>
     <string name="_plus_minus">±</string>
     <string name="_exponentiation">^</string>
+    <string name="_sqrt">√</string>
 
 </resources>
