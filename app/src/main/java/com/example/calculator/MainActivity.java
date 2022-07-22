@@ -156,13 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 operator = ' ';
             }
         }
-        StringBuilder text = new StringBuilder(field.getText().toString());
-        int textLength = text.length();
-        if (textLength > 0) {
-            text.deleteCharAt(textLength - 1);
-            field.setText(text.toString());
-            editFontSize();
-        }
+        renderField();
     }
 
     private void sqrt() {

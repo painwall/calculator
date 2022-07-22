@@ -61,6 +61,8 @@ public class Number  {
     public void deleteLastCharacter() throws LengthError {
         if (number.length() == 0) { throw new LengthError ("LENGTH_ERROR"); }
         else { number.deleteCharAt(number.length() - 1); }
+
+        if (number.length() == 1 && number.charAt(0) == '-') { number.deleteCharAt(0); }
     }
 
     public String toString() {
